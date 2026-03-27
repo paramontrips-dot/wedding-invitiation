@@ -258,7 +258,7 @@ body::before {
     color: var(--gold);
     
     /* Height must match the map-link */
-    height: 38px;
+    /* height: 38px; */
     padding: 0 20px;
     
     font-family: var(--body-font);
