@@ -457,3 +457,70 @@ body::before {
 /* Opening State */
 
 .envelope-wrapper.open { transform: rotateX(180deg); }
+
+/* --- Mobile Optimization --- */
+
+@media (max-width: 768px) {
+    /* 1. Scale down the main wrapper */
+    .envelope-wrapper {
+        width: 90vw; /* Use 90% of the screen width */
+        height: 380px; /* Shorter height for mobile aspect ratios */
+        perspective: 1500px;
+    }
+
+    /* 2. Adjust the card padding and text sizes */
+    .invitation-card {
+        padding: 20px 15px; /* Tighter padding for more text room */
+    }
+
+    .names {
+        font-size: 2.2rem; /* Scale down the names */
+    }
+
+    .poetic-invite {
+        font-size: 1rem;
+        max-width: 95%;
+        line-height: 1.4;
+    }
+
+    /* 3. Re-stack the details grid if it's too cramped */
+    .details-grid {
+        grid-template-columns: 1fr; /* Stack date and time vertically */
+        gap: 5px;
+        margin: 10px 0;
+        padding: 10px 0;
+    }
+
+    .detail-divider {
+        display: none; /* Hide the vertical line on mobile */
+    }
+
+    /* 4. Fix Button Layout for Thumbs */
+    .action-buttons {
+        flex-direction: column; /* Stack buttons vertically for easier tapping */
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .map-link, .back-btn {
+        width: 100%; /* Full width buttons are easier to tap on iPhone */
+        height: 44px; /* Apple's recommended minimum touch target height */
+    }
+
+    /* 5. Adjust the floating caricature so it doesn't overlap the card */
+    .caricature-container {
+        width: 80px;
+        height: 80px;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+/* 6. Safari "Flicker" Fix */
+/* iPhones use Webkit, which sometimes glitches during 3D transforms */
+.envelope-wrapper, .invitation-card, .envelope-front {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
