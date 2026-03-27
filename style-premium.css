@@ -1,0 +1,272 @@
+:root {
+    /* Refined to softer, richer tones */
+    --paper-color: #FAFAF7; /* Warm, textured off-white */
+    --gold: #C5A059; /* A softer, more matte gold */
+    --emerald: #1B4D3E; /* Deepened to a rich forest/emerald */
+    --burgundy: #722F37; /* A sophisticated wine/bordeaux */
+    --text-color: #333333;
+    
+    --heading-font: 'Cormorant Garamond', serif;
+    --body-font: 'Montserrat', sans-serif;
+    --envelope-front-img: url("envelope.png");
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: var(--body-font);
+    color: var(--text-color);
+    
+    /* Elegant Silk/Champagne Gradient instead of bright water */
+    background: linear-gradient(135deg, #F8F7F2 0%, #EAE7DC 50%, #D8D3C4 100%);
+    background-size: 200% 200%;
+    animation: silkFlow 15s ease infinite;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    perspective: 2000px;
+    position: relative;
+}
+
+/* Subtle texture overlay */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/cream-paper.png'); 
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* Caricature Corner */
+.caricature-container {
+    position: absolute; 
+    top: 30px; 
+    right: 30px;
+    width: 120px; 
+    height: 120px;
+    border: 1px solid var(--gold); /* Thinner border */
+    border-radius: 50%;
+    overflow: hidden; 
+    background: white; 
+    z-index: 100;
+    transition: opacity 0.8s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Softened shadow */
+    animation: gentleHover 6s ease-in-out infinite;
+}
+
+.caricature-container img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+}
+
+/* Envelope Structure */
+.envelope-wrapper {
+    position: relative;
+    width: 650px;
+    height: 460px;
+    margin-top: -50px; 
+    
+    transition: transform 1.8s cubic-bezier(0.4, 0, 0.2, 1); /* Slightly slower for luxury feel */
+    transform-style: preserve-3d;
+    
+    animation: gentleHover 6s ease-in-out infinite;
+    
+    /* Much softer, diffused shadow */
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15), 
+                0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.envelope-wrapper.open {
+    animation: none;
+    transform: rotateX(180deg) translateY(-20px);
+    box-shadow: 0 -30px 60px rgba(0, 0, 0, 0.15); /* Invert shadow on open */
+}
+
+.envelope-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: var(--envelope-front-img); 
+    background-size: cover;
+    background-position: center;
+    z-index: 5; 
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+/* The Wax Seal / Button */
+.open-btn {
+    width: 65px; 
+    height: 65px;
+    background: var(--burgundy); 
+    border-radius: 50%;
+    margin-bottom: 40px; 
+    cursor: pointer;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(114, 47, 55, 0.4), inset 0 0 10px rgba(0,0,0,0.2); /* Wax seal feel */
+    transition: all 0.5s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.open-btn:hover { 
+    transform: scale(1.05) translateY(-2px); 
+    box-shadow: 0 8px 20px rgba(114, 47, 55, 0.5);
+}
+
+.open-btn::after { 
+    content: "S&A"; 
+    color: var(--gold); 
+    font-family: var(--heading-font); 
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* The Invitation Card */
+.invitation-card {
+    position: absolute;
+    width: calc(100% - 30px); /* Slightly more margin */
+    height: calc(100% - 30px);
+    top: 15px;
+    left: 15px;
+    background-color: var(--paper-color);
+    border: 1px solid var(--gold); /* Thinner, elegant border */
+    padding: 60px 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    
+    /* Removed cardPulse: Reading moving text ruins the premium feel */
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+/* Add a subtle inner border for a letterpress feel */
+.invitation-card::after {
+    content: '';
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    border: 1px solid rgba(197, 160, 89, 0.3); /* Faded gold */
+    pointer-events: none;
+}
+
+.card-caricature {
+    width: 80px; 
+    height: 80px; 
+    margin: -80px auto 15px;
+    border-radius: 50%; 
+    border: 1px solid var(--gold);
+    overflow: hidden; 
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.card-caricature img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.names { 
+    font-family: var(--heading-font); 
+    font-size: 3.2rem; 
+    color: var(--emerald); 
+    margin: 0; 
+    font-weight: 400; /* Lighter weight is usually more elegant */
+}
+
+.ampersand { 
+    font-family: var(--heading-font); 
+    color: var(--gold); 
+    font-size: 2rem; 
+    font-style: italic;
+}
+
+.details-grid { 
+    display: grid; 
+    grid-template-columns: 1fr auto 1fr; 
+    align-items: center; 
+    border-top: 1px solid rgba(197, 160, 89, 0.4); 
+    border-bottom: 1px solid rgba(197, 160, 89, 0.4);
+    margin: 25px 0; 
+    padding: 20px 0;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--emerald);
+}
+
+.detail-divider { 
+    width: 1px; 
+    height: 30px; 
+    background: var(--gold); 
+    opacity: 0.5; 
+    margin: 0 15px; 
+}
+
+.map-link { 
+    text-decoration: none; 
+    color: var(--paper-color); 
+    background: var(--emerald); 
+    padding: 10px 20px; 
+    font-size: 0.75rem; 
+    letter-spacing: 2px; 
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+    border-radius: 2px;
+}
+
+.map-link:hover {
+    background: var(--burgundy);
+}
+
+.back-btn {
+    margin-top: 15px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 10px 20px;
+    font-family: var(--body-font);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    align-self: center;
+    position: relative;
+    z-index: 10; /* Ensures it is clickable above the inner border */
+}
+
+.back-btn:hover {
+    background: var(--gold);
+    color: var(--paper-color);
+}
+
+/* --- REFINED ANIMATIONS --- */
+
+/* Replaces clothFloat: Much smoother, less rotation */
+@keyframes gentleHover {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Replaces waterFlow: Slow, elegant background shifting */
+@keyframes silkFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
