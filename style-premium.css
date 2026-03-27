@@ -246,7 +246,7 @@ body::before {
     box-sizing: border-box; /* Crucial for alignment */
     border: 1px solid var(--emerald); /* Border added to match back-btn thickness */
 }
-testing
+
 /* 3. The Back Button: Matches the dimensions of the link */
 .back-btn {
     display: inline-flex;
